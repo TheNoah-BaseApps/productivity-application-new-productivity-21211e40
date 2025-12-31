@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Users, Calendar, TrendingUp, FileText, Bug } from 'lucide-react';
+import { CheckCircle2, Users, Calendar, TrendingUp, FileText, Bug, Video } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function HomePage() {
   const features = [
     {
       icon: FileText,
-      title: 'Requirements Management',
+      title: 'Product Requirements',
       description: 'Define and track product requirements from concept to delivery'
     },
     {
@@ -46,6 +46,11 @@ export default function HomePage() {
       icon: Users,
       title: 'Team Collaboration',
       description: 'Meeting notes, action items, and team availability tracking'
+    },
+    {
+      icon: Video,
+      title: 'Meeting Recordings',
+      description: 'Access and manage meeting recordings with searchable archive'
     }
   ];
 

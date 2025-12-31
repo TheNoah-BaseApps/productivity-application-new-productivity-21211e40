@@ -299,6 +299,217 @@
         ]
       }
     },
+    "/api/meeting-recordings/{id}": {
+      "get": {
+        "summary": "Get a meeting recording by ID",
+        "tags": [
+          "Meeting Recordings"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meeting recording details"
+          },
+          "404": {
+            "description": "Meeting recording not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a meeting recording",
+        "tags": [
+          "Meeting Recordings"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Meeting recording updated successfully"
+          },
+          "404": {
+            "description": "Meeting recording not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a meeting recording",
+        "tags": [
+          "Meeting Recordings"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meeting recording deleted successfully"
+          },
+          "404": {
+            "description": "Meeting recording not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/meeting-recordings": {
+      "get": {
+        "summary": "Get all meeting recordings",
+        "description": "Retrieve all meeting recordings with filtering and pagination",
+        "tags": [
+          "Meeting Recordings"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by meeting title"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of meeting recordings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new meeting recording",
+        "description": "Add a new meeting recording to the system",
+        "tags": [
+          "Meeting Recordings"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "recording_id",
+                  "meeting_title",
+                  "meeting_date"
+                ],
+                "properties": {
+                  "recording_id": {
+                    "type": "string"
+                  },
+                  "meeting_title": {
+                    "type": "string"
+                  },
+                  "participants": {
+                    "type": "string"
+                  },
+                  "recording_link": {
+                    "type": "string"
+                  },
+                  "meeting_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "description": "Duration in minutes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Meeting recording created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/meetings": {
       "get": {
         "summary": "Get all meetings",
@@ -333,6 +544,254 @@
         "tags": [
           "Notifications"
         ]
+      }
+    },
+    "/api/product-requirements/{id}": {
+      "get": {
+        "summary": "Get a product requirement by ID",
+        "tags": [
+          "Product Requirements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product requirement details"
+          },
+          "404": {
+            "description": "Product requirement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a product requirement",
+        "tags": [
+          "Product Requirements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product requirement updated successfully"
+          },
+          "404": {
+            "description": "Product requirement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a product requirement",
+        "tags": [
+          "Product Requirements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product requirement deleted successfully"
+          },
+          "404": {
+            "description": "Product requirement not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/product-requirements": {
+      "get": {
+        "summary": "Get all product requirements",
+        "description": "Retrieve all product requirements with filtering and pagination",
+        "tags": [
+          "Product Requirements"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by status"
+          },
+          {
+            "in": "query",
+            "name": "priority",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by priority"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            },
+            "description": "Number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of product requirements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new product requirement",
+        "description": "Add a new product requirement to the system",
+        "tags": [
+          "Product Requirements"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "requirement_id",
+                  "feature_description",
+                  "priority",
+                  "requirement_date",
+                  "status"
+                ],
+                "properties": {
+                  "requirement_id": {
+                    "type": "string"
+                  },
+                  "customer_id": {
+                    "type": "string"
+                  },
+                  "document_source": {
+                    "type": "string"
+                  },
+                  "feature_description": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": [
+                      "Low",
+                      "Medium",
+                      "High",
+                      "Critical"
+                    ]
+                  },
+                  "associated_product": {
+                    "type": "string"
+                  },
+                  "requirement_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "New",
+                      "In Progress",
+                      "Approved",
+                      "Rejected",
+                      "Completed"
+                    ]
+                  },
+                  "no_of_sprints": {
+                    "type": "integer"
+                  },
+                  "cost": {
+                    "type": "number"
+                  },
+                  "q_cparameters": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product requirement created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
       }
     },
     "/api/requirements": {
