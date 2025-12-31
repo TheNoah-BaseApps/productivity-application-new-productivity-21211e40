@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Users, Calendar, TrendingUp, FileText, Bug, Video } from 'lucide-react';
+import { CheckCircle2, Users, Calendar, TrendingUp, FileText, Bug, Video, Package, Clock } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
@@ -51,6 +51,16 @@ export default function HomePage() {
       icon: Video,
       title: 'Meeting Recordings',
       description: 'Access and manage meeting recordings with searchable archive'
+    },
+    {
+      icon: Package,
+      title: 'Software Deliveries',
+      description: 'Track software installations, support levels, and customer feedback'
+    },
+    {
+      icon: Clock,
+      title: 'Time Sheets',
+      description: 'Employee time tracking with project and task linkage'
     }
   ];
 

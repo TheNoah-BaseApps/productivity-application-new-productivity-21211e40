@@ -818,6 +818,236 @@
         ]
       }
     },
+    "/api/software-deliveries/{id}": {
+      "get": {
+        "summary": "Get a software delivery by ID",
+        "tags": [
+          "Software Deliveries"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Software delivery found"
+          },
+          "404": {
+            "description": "Software delivery not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a software delivery",
+        "tags": [
+          "Software Deliveries"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Software delivery updated"
+          },
+          "404": {
+            "description": "Software delivery not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a software delivery",
+        "tags": [
+          "Software Deliveries"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Software delivery deleted"
+          },
+          "404": {
+            "description": "Software delivery not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/software-deliveries": {
+      "get": {
+        "summary": "Get all software deliveries",
+        "description": "Retrieve a list of all software deliveries with optional filtering and pagination",
+        "tags": [
+          "Software Deliveries"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by installation status"
+          },
+          {
+            "in": "query",
+            "name": "customer_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by customer ID"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved software deliveries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new software delivery",
+        "description": "Add a new software delivery record",
+        "tags": [
+          "Software Deliveries"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "delivery_id",
+                  "customer_id",
+                  "software_name",
+                  "version",
+                  "delivery_date",
+                  "installation_status"
+                ],
+                "properties": {
+                  "delivery_id": {
+                    "type": "string"
+                  },
+                  "customer_id": {
+                    "type": "string"
+                  },
+                  "software_name": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "installation_status": {
+                    "type": "string"
+                  },
+                  "support_level": {
+                    "type": "string"
+                  },
+                  "assigned_agent": {
+                    "type": "string"
+                  },
+                  "feedback_received": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Software delivery created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/tasks": {
       "get": {
         "summary": "Get all tasks",
@@ -830,6 +1060,247 @@
         "tags": [
           "Tasks"
         ]
+      }
+    },
+    "/api/time-sheets/{id}": {
+      "get": {
+        "summary": "Get a time sheet by ID",
+        "tags": [
+          "Time Sheets"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time sheet found"
+          },
+          "404": {
+            "description": "Time sheet not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a time sheet",
+        "tags": [
+          "Time Sheets"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Time sheet updated"
+          },
+          "404": {
+            "description": "Time sheet not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a time sheet",
+        "tags": [
+          "Time Sheets"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time sheet deleted"
+          },
+          "404": {
+            "description": "Time sheet not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/time-sheets": {
+      "get": {
+        "summary": "Get all time sheets",
+        "description": "Retrieve a list of all time sheets with optional filtering and pagination",
+        "tags": [
+          "Time Sheets"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "employee_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by employee ID"
+          },
+          {
+            "in": "query",
+            "name": "project_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by project ID"
+          },
+          {
+            "in": "query",
+            "name": "approval_status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by approval status"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved time sheets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new time sheet",
+        "description": "Add a new time sheet record",
+        "tags": [
+          "Time Sheets"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "timesheet_id",
+                  "employee_id",
+                  "project_id",
+                  "task_id",
+                  "date",
+                  "start_time",
+                  "end_time",
+                  "hours_worked",
+                  "approval_status"
+                ],
+                "properties": {
+                  "timesheet_id": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "project_id": {
+                    "type": "string"
+                  },
+                  "task_id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "start_time": {
+                    "type": "string"
+                  },
+                  "end_time": {
+                    "type": "string"
+                  },
+                  "hours_worked": {
+                    "type": "integer"
+                  },
+                  "approval_status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Time sheet created successfully"
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
       }
     },
     "/api/timesheets": {

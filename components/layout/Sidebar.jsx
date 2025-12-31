@@ -30,11 +30,13 @@ const menuItems = [
   { href: '/bugs', label: 'Bugs', icon: Bug },
   { href: '/leaves', label: 'Leaves', icon: Calendar },
   { href: '/timesheets', label: 'Timesheets', icon: Clock },
+  { href: '/time-sheets', label: 'Time Sheets', icon: Clock },
   { href: '/expenses', label: 'Expenses', icon: DollarSign },
   { href: '/meetings', label: 'Meetings', icon: Users },
   { href: '/meeting-recordings', label: 'Meeting Recordings', icon: Video },
   { href: '/milestones', label: 'Milestones', icon: Target },
   { href: '/deliveries', label: 'Deliveries', icon: Package },
+  { href: '/software-deliveries', label: 'Software Deliveries', icon: Package },
   { href: '/reports', label: 'Reports', icon: BarChart3 },
 ];
 
